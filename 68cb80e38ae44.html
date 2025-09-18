@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试通道 - 正在跳转到 https://2ban.top/</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .container {
+            text-align: center;
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 154, 158, 0.3);
+            border-top: 4px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 0.5rem;
+            transition: background 0.3s;
+            border: 1px solid #ff5252;
+        }
+        .btn:hover {
+            background: #ff5252;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .guide-section {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        .guide-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #d32f2f;
+        }
+        .guide-steps {
+            text-align: left;
+            margin: 1rem 0;
+        }
+        .guide-step {
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 0.3rem;
+        }
+        .guide-step strong {
+            color: #d32f2f;
+        }
+        .browser-icon {
+            font-size: 2rem;
+            margin: 0.5rem;
+        }
+        .hidden {
+            display: none;
+        }
+        .test-warning {
+            background: #ffeb3b;
+            color: #f57c00;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-weight: bold;
+            border: 2px solid #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 微信/QQ环境 -->
+        <div id="wechatEnv" class="hidden">
+            <div class="browser-icon">🧪</div>
+            <h2>测试通道 - 请在浏览器中打开</h2>
+            <p>检测到您在微信/QQ中访问，为了更好的体验，请在浏览器中打开</p>
+            
+            <div class="test-warning">
+                <strong>⚠️ 测试通道：</strong>10分钟后自动删除
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-title">📱 打开方法</div>
+                <div class="guide-steps">
+                    <div class="guide-step">
+                        <strong>1. 点击右上角</strong> "..." 或 "⋮" 按钮
+                    </div>
+                    <div class="guide-step">
+                        <strong>2. 选择</strong> "在浏览器中打开"
+                    </div>
+                    <div class="guide-step">
+                        <strong>3. 选择浏览器</strong> Safari（苹果）或其他浏览器
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://2ban.top/" class="btn" target="_blank">直接访问（可能受限）</a>
+        </div>
+    </div>
+    
+    <script>
+        // 检测是否在微信或QQ中
+        function isWeChatOrQQ() {
+            const ua = navigator.userAgent.toLowerCase();
+            return ua.includes('micromessenger') || ua.includes('qq/');
+        }
+        
+        // 检测是否在浏览器中
+        function isInBrowser() {
+            const ua = navigator.userAgent.toLowerCase();
+            // 排除微信和QQ
+            if (ua.includes('micromessenger') || ua.includes('qq/')) {
+                return false;
+            }
+            // 检测常见浏览器
+            return ua.includes('chrome') || 
+                   ua.includes('firefox') || 
+                   ua.includes('safari') || 
+                   ua.includes('edge') || 
+                   ua.includes('opera');
+        }
+        
+        // 页面加载完成后执行检测
+        document.addEventListener('DOMContentLoaded', function() {
+            const wechatEnv = document.getElementById('wechatEnv');
+            
+            if (isWeChatOrQQ()) {
+                // 在微信或QQ中，显示引导界面
+                wechatEnv.classList.remove('hidden');
+            } else if (isInBrowser()) {
+                // 在浏览器中，直接跳转，不显示任何页面
+                window.location.href = 'https://2ban.top/';
+            } else {
+                // 其他环境，显示浏览器引导
+                wechatEnv.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
